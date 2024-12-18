@@ -9,14 +9,14 @@ def function(calc):
                 'семьдесят', 'восемьдесят', 'девяносто']
     list_hundred = ['сто', 'двести', 'триста', 'четыреста', 'пятьсот',
                     'шестьсот', 'семьсот', 'восемьсот', 'девятьсот']
-    list_num = []
+    list_num = [] 
 
     for ten in list_ten:
         for num in [''] + list_letter[1:10]:
             if num != '': # позволяет корректо обрабатовать случай когда к десятку добавляется 0
                 list_letter.append(ten + ' ' + num)
             else:
-                list_letter.append(ten + num) #комбинация десятков с еденицами
+                list_letter.append(ten + num) #комбинация десятков с еденицами 
 
     for hundred in list_hundred:
         for ten in [''] + list_letter[1:100]: #комбинация тысяч с сотнями
@@ -27,7 +27,7 @@ def function(calc):
     for num in range(0, 10000): #заполнение списка чисел
         list_num.append(num)
 
-    if '  ' in calc or calc[0] == ' ' or calc[-1] == ' ': #проверка на ошибку ввода
+    if '  ' in calc or calc[0] == ' ' or calc[-1] == ' ': #проверка на ошибку ввода 
         print('Ошибка ввода')
         return True
     calc = calc.replace('минус', '-')
@@ -36,14 +36,14 @@ def function(calc):
     calc = calc.replace('скобка открывается', '(')
     calc = calc.replace('скобка закрывается', ')')
     for indx, num in enumerate(reversed(list_letter[0:100])):  #для перебора элементов списка list_letter, начиная с конца до 100-го элемента
-        calc = calc.replace(num, str(list_num[100 - indx - 1]))    #замена чисел если в calc находится "относящееся к числу", например, "пятьдесят", то оно будет заменено на "50"
+        calc = calc.replace(num, str(list_num[100 - indx - 1]))    #замена чисел если в calc находится "относящееся к числу", например, "пятьдесят", то оно будет заменено на "50" 
     try:
-        result = eval(calc) # елси есть ошибка
+        result = eval(calc) # елси есть ошибка 
     except SyntaxError:
         print('Ошибка ввода')
     except NameError:
         print('Ошибка ввода')
-
+    
     if result != None: # Проверка результата
         calc = calc.replace(' ', '') #Удаление пробелов
         if ('**' in calc or '++' in calc or calc[0] == '+' or '++' in calc or #Проверка корректности ввода
@@ -57,5 +57,5 @@ def function(calc):
             except ValueError:#Обработка исключений Если result не найден в list_num, это приведет к выбросу исключения ValueError.
                 print('Ошибка ввода')
 
-function(input('Введите выражение: '))
+function(input('Введите выражение: ')) 
 input('Введите Enter для выхода')
